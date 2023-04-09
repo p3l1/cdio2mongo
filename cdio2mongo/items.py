@@ -6,7 +6,10 @@
 import scrapy
 
 
-class Cdio2MongoItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class WatchDocument(scrapy.Item):
+
+    _id = scrapy.Field()
+    watch_uuid = scrapy.Field()
+    created_at = scrapy.Field()
+    body = scrapy.Field()
+    source_url = scrapy.Field()

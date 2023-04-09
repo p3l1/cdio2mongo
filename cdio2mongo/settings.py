@@ -62,9 +62,9 @@ COOKIES_ENABLED = False
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "cdio2mongo.pipelines.Cdio2MongoPipeline": 300,
-#}
+ITEM_PIPELINES = {
+    "cdio2mongo.pipelines.MongoPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -95,3 +95,7 @@ FEED_EXPORT_ENCODING = "utf-8"
 CHANGEDETECTION_DOMAIN = "changedetection.io"
 CHANGEDETECTION_BASE_URL = f"https://{CHANGEDETECTION_DOMAIN}/"
 CHANGEDETECTION_HTTP_HEADER = "x-api-key"
+CHANGEDETECTION_ONLY_LATEST = True
+
+MONGO_URI = "mongodb://localhost:27017"
+MONGO_DATABASE = "watches"
