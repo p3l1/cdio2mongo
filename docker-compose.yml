@@ -2,6 +2,14 @@
 version: '3.1'
 
 services:
+  changedetection:
+    image: ghcr.io/dgtlmoon/changedetection.io
+    container_name: changedetection
+    ports:
+      - "8082:5000"
+    hostname: changedetection
+    volumes:
+      - changedetection_data:/datastore
   mongo:
     image: mongo
     restart: unless-stopped
@@ -16,5 +24,11 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: changeme
       ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
+    volumes:
+      - changedetection_data:/data/db
     depends_on:
       - mongo
+
+volumes:
+  mongo_data:
+  changedetection_data:

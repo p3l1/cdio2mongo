@@ -14,12 +14,13 @@ class ApiSpider(scrapy.Spider):
         super().__init__(*args, **kwargs)
 
         # http or https
-        _protocol = kwargs.get("protocol",)
+        _protocol = kwargs.get("protocol")
+        _port = kwargs.get("port")
 
         self.domain = kwargs.get("domain")
         self.allowed_domains.append(self.domain)
 
-        self.base_url = f"{_protocol}://{self.domain}"
+        self.base_url = f"{_protocol}://{self.domain}:{_port}"
 
         start_url = f"{self.base_url}/api/v1/watch"
         self.start_urls.append(start_url)
@@ -35,9 +36,11 @@ class ApiSpider(scrapy.Spider):
 
     @classmethod
     def from_crawler(cls, crawler, *args, **kwargs):
+
         spider = cls(
             *args,
             domain=crawler.settings.get("CHANGEDETECTION_DOMAIN", "changedetection.io"),
+            port=crawler.settings.get("CHANGEDETECTION_PORT", 443),
             protocol=crawler.settings.get("CHANGEDETECTION_PROTOCOL", "https"),
             http_header=crawler.settings.get("CHANGEDETECTION_HTTP_HEADER", "x-api-key"),
             api_key=crawler.settings.get("CHANGEDETECTION_API_KEY", None),
