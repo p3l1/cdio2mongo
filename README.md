@@ -1,9 +1,10 @@
 # cdio2mongo
-Scrapy spider to consume scraping results from [changedetection.io](https://github.com/dgtlmoon/changedetection.io) watches and save them into a MongoDB.
+[Scrapy](https://github.com/scrapy/scrapy) spider to consume watch results from a [changedetection.io](https://github.com/dgtlmoon/changedetection.io)
+instance and save them into a [MongoDB](https://www.mongodb.com/de-de).
 
 ## Usage
 
-Start the mongo database
+Start the Docker Compose stack with a mongo database and changedetection.io for testing.
 
 ```shell
 docker-compose up -d
@@ -26,7 +27,7 @@ created. The history timestamp (`created_at`) is used as the primary key (`_id`)
 ## Motivation
 
 The storage backend of [changedetection.io](https://github.com/dgtlmoon/changedetection.io) is not sufficient for my
-needs, so I decided to create a simple spider with [Scrapy](https://github.com/scrapy/scrapy) and to save all my data
+needs, so I decided to create a simple spider with [Scrapy](https://github.com/scrapy/scrapy) to save all my data
 from changedetection.io for further processing and to back it up.
 
 ## Licence
